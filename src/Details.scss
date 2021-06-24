@@ -1,0 +1,8 @@
+.pokemon-card {
+    margin-bottom: 1rem;
+    text-transform: capitalize;
+
+    &__image {
+        max-width: 9.6rem;
+    }
+}
