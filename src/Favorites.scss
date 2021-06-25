@@ -1,0 +1,16 @@
+.favorite-list{
+    &__title {
+        font-size: 1.6rem;
+        font-weight: 700;
+        text-align: center;
+    }
+    
+    &__pokemon {
+        text-transform: capitalize;
+    }
+    
+    &__no-pokemon{
+        text-align: center;
+        text-transform: capitalize;
+    }
+}

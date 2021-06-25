@@ -1,7 +1,7 @@
 import React from 'react'
 import Pagination from './Pagination';
 
-import '../scss/pokemon-list.scss';
+import '../scss/PokemonList.scss';
 
 export default function Pokemon({ pokemonList, loadNextPage, loadPrevPage }) {
     return (
@@ -10,6 +10,7 @@ export default function Pokemon({ pokemonList, loadNextPage, loadPrevPage }) {
                 <Pagination
                     loadNextPage={loadNextPage}
                     loadPrevPage={loadPrevPage}
+                    aditionalClass='pagination-buttons__top'
                 />
             </div>
 
@@ -24,7 +25,7 @@ export default function Pokemon({ pokemonList, loadNextPage, loadPrevPage }) {
                                 <figure className="pokemon-list__figure">
                                     {/* <img src={pokeImgURL} alt={pokeDescription} width='80' className="pokemon-list__image"/> */}
                                     <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokeNumber}.png`} alt={pokeDescription} width='80' className="pokemon-list__image"/>
-                                    <figcaption className="pokemon-list__caption">{poke.name}</figcaption>
+                                    <figcaption className="pokemon-list__caption">{poke.name.replace('-', ' ')}</figcaption>
                                 </figure>
                             </a>
                         </li>
@@ -36,6 +37,7 @@ export default function Pokemon({ pokemonList, loadNextPage, loadPrevPage }) {
                 <Pagination
                     loadNextPage={loadNextPage}
                     loadPrevPage={loadPrevPage}
+                    aditionalClass='pagination-buttons__bottom'
                 />
             </div>
         </>

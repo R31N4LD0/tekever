@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import Container from 'react-bootstrap/Container';
+import { Container,  Nav, Navbar } from 'react-bootstrap';
 import Home from './Home';
 import Details from './Details';
 import Favorites from './Favorites';
@@ -10,7 +10,8 @@ import {
   Switch,
 } from "react-router-dom";
 
-import { Nav, Navbar } from 'react-bootstrap';
+
+import './Main.scss';
 
 /*
     Breakpoint:
@@ -35,16 +36,14 @@ export default function Main() {
   return (
     <Router>
         <Container>
-            <header>
-                <Navbar bg="light" expand="lg">
+            <header className="main-header">
+                <Navbar bg="light">
                     <Container>
                         <Navbar.Brand href="/">Pokemon List</Navbar.Brand>
-                        {/* <Navbar.Collapse id="basic-navbar-nav"> */}
-                            <Nav className="me-auto">
-                                <Nav.Link href="/">Home</Nav.Link>
-                                <Nav.Link href="/favorites">Favorites</Nav.Link>
-                            </Nav>
-                        {/* </Navbar.Collapse> */}
+                        <Nav className="me-auto">
+                            <Nav.Link href="/">Home</Nav.Link>
+                            <Nav.Link href="/favorites">Favorites</Nav.Link>
+                        </Nav>
                     </Container>
                 </Navbar>
             </header>
@@ -63,7 +62,7 @@ export default function Main() {
                 </Route>
             </Switch>
 
-            <footer>
+            <footer className="main-footer">
                 <span>by @R31N4LD0</span>
                 <p>images from <a href="https://github.com/PokeAPI/sprites.git" target="_blank" rel="noreferrer">this repository</a>.</p>
             </footer>

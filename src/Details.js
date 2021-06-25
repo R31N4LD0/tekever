@@ -64,7 +64,7 @@ export default function Details() {
                 setLoadingDetails(false);
             });
     }, []);
-
+    
     function checkIfPokemonIsFavorite(id) {
         let storageList = JSON.parse(localStorage.favPokes);
         setIsFavorite(storageList.includes(id));
@@ -95,7 +95,7 @@ export default function Details() {
                         <Card.Header>Basic Infos</Card.Header>
                         <Card.Img className="mx-auto pokemon-card__image" src={pokemonImage} />
                         <Card.Body>
-                            <Card.Title as="h3" className="pokemon-card__name">{pokemonName}</Card.Title>
+                            <Card.Title as="h3" className="pokemon-card__name">{pokemonName.replace('-', ' ')}</Card.Title>
                             <Card.Text>Base XP: {pokemonBaseXP}</Card.Text>
                             <Card.Text>Weight: {pokemonWeight} kg</Card.Text>
                             <Card.Text>Total movies: {pokemonTotalMoves}</Card.Text>

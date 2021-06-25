@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+import { ListGroup } from 'react-bootstrap';
+
+import './Favorites.scss';
 
 export default function Favorites() {
     const [loadingFavorites, setLoadingFavorites] = useState(true);
@@ -11,14 +14,13 @@ export default function Favorites() {
     let requestsList = [];
 
     useEffect(() => {
-        setLoadingFavorites(false);
+        if(localStorage.favPokes)
+            setFavoriteStoredList(JSON.parse(localStorage.favPokes));
 
-        setFavoriteStoredList(JSON.parse(localStorage.favPokes));
+        setLoadingFavorites(false);
     }, []);
         
     useEffect(() => {
-        setLoadingFavorites(true);
-
         if(favoriteStoredList.length > 0) {
             setHasFavorites(true);
             retiviedFavoritedPokemonData(favoriteStoredList);
@@ -52,18 +54,41 @@ export default function Favorites() {
 
     return (
         <>
-            {hasFavorites && favoritesData.map( (favorite, i) => (
-                <p key={i}>
-                    <img 
-                        className="pokemon-card__image" 
-                        src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${favorite.data.id}.png`} 
-                    />
-                    {favorite.data.name}
-                </p>
-            ))}
-            {!hasFavorites && 
-                <p>No Favorited Pokemon. (yet!)</p>
-            }
+            <ListGroup 
+                className="favorite-list__pokemon"
+                as="ul"
+            >
+                <ListGroup.Item 
+                    className="favorite-list__title"
+                    as="li"
+                    variant="dark"
+                >
+                    Your favorited list
+                </ListGroup.Item>
+
+                {hasFavorites && favoritesData.map( (favorite, i) => (
+                    <ListGroup.Item 
+                        key={i}
+                        className="favorite-list__pokemon"
+                        as="li"
+                    >
+                        <img 
+                            className="pokemon-card__image" 
+                            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${favorite.data.id}.png`} 
+                        />
+                        {favorite.data.name.replace('-', ' ')}
+                    </ListGroup.Item>
+                ))}
+
+                {!hasFavorites && 
+                    <ListGroup.Item 
+                        className="favorite-list__no-pokemon"
+                        as="li"
+                    >
+                        No Favorited Pokemon. (yet!)
+                    </ListGroup.Item>
+                }
+            </ListGroup>
         </>
     )
 }

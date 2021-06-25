@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-// import Pagination from './components/Pagination';
 import PokemonList from './components/PokemonList';
 
 export default function Home() {
@@ -50,11 +49,6 @@ export default function Home() {
         loadNextPage={nextURL ? loadNextPage : null}
         loadPrevPage={prevURL ? loadPrevPage : null}
       />
-      
-      {/* <Pagination
-        loadNextPage={nextURL ? loadNextPage : null}
-        loadPrevPage={prevURL ? loadPrevPage : null}
-      /> */}
     </>
   );
 }

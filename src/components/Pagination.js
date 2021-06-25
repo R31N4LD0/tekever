@@ -1,23 +1,29 @@
 import React from 'react';
-import { Button } from 'react-bootstrap';
+import { Button, Container } from 'react-bootstrap';
 
-export default function Pagination({ loadNextPage, loadPrevPage }) {
+import '../scss/Pagination.scss'
+
+export default function Pagination({ loadNextPage, loadPrevPage, aditionalClass }) {
     return (
         <>
-            <Button
-                onClick={loadPrevPage}
-                disabled={!loadPrevPage}
-                size="small" 
-                variant="success">
-                Prev
-            </Button>{' '}
-            {loadNextPage && <Button
-                onClick={loadNextPage}
-                disabled={!loadNextPage}
-                size="small" 
-                variant="success">
-                Next
-            </Button>}{' '}
+            <Container className={`pagination-buttons ${aditionalClass}`}>
+                <Button
+                    onClick={loadPrevPage}
+                    disabled={!loadPrevPage}
+                    size="small" 
+                    variant="success"
+                >
+                    Prev
+                </Button>{' '}
+                {loadNextPage && <Button
+                    onClick={loadNextPage}
+                    disabled={!loadNextPage}
+                    size="small" 
+                    variant="success"
+                >
+                    Next
+                </Button>}
+            </Container>
         </>
     )
 }
