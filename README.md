@@ -1,70 +1,42 @@
-# Getting Started with Create React App
+# Tekever - React Challenge
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project contains the challenge from Tekever where I should hit some requirements, all of then can be found [here](https://github.com/R31N4LD0/tekever/blob/master/public/Tekever%20-%20React%20Challenge.pdf), but basically We should have a main page showing a list of all pokemon, with pagination. When a pokemon is clicked another page should open with the details of this one and also It can be add to a favorited list (in browsers' localStorage). In the last page all the favorited pokemon should be listed. 
 
-## Available Scripts
+## Some more detailed infos
+The items in the section 'Functional requirements' included in the [PDF](https://github.com/R31N4LD0/tekever/blob/master/public/Tekever%20-%20React%20Challenge.pdf) was developed and can be used in this final version.\
 
-In the project directory, you can run:
+You'll need `yarn` or `npm` to run the project localy, but from now on We will cover all the steps using only `yarn`.
+
+The app uses React version `17.0.2`, and some 'addons' like `node-sass`, `axios`, `react-bootstrap` and `react-router-dom` to get the things more easy.
+
+
+## Running the project
+
+After You clone this project, just run the instalation:
+
+### `yarn install`
+
+And than, start it with:
 
 ### `yarn start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+After that just open [http://localhost:3000](http://localhost:3000) in the browser to see the main page.\
+When You edit some file, the app will be aotomatically reloaded in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+The command `yarn build` will generate the final app folder inside the folder `build`.\
+Visite the section [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more infos about it.
+
+
+## Tests
+
+They are come soon, and will be usefull by running:
 
 ### `yarn test`
 
-Launches the test runner in the interactive watch mode.\
+It'll launches the test runner with a watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `yarn build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Did You found some issues?
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Just use the [issues section](https://github.com/R31N4LD0/tekever/issues) and search if someone did report it before You, if not, just open another issue ticket.

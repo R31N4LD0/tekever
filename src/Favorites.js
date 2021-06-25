@@ -81,6 +81,7 @@ export default function Favorites() {
                         <img 
                             className="pokemon-card__image" 
                             src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${favorite.data.id}.png`} 
+                            alt={`Imagem ilustrativa do pokemon ${favorite.data.name.replace('-', ' ')}`}
                         />
                         {favorite.data.name.replace('-', ' ')}
                     </ListGroup.Item>

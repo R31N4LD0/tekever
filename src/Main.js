@@ -42,9 +42,14 @@ export default function Main() {
             <header className="main-header">
                 <Navbar bg="light">
                     <Container>
-                        <Navbar.Brand href="/">Pokemon List</Navbar.Brand>
+                        <Navbar.Brand href="/">
+                            <img
+                                src='pokedex-icon.svg'
+                                width='40'
+                                height='40'
+                            /> Pokemon List
+                        </Navbar.Brand>
                         <Nav className="me-auto">
-                            <Nav.Link href="/">Home</Nav.Link>
                             <Nav.Link href="/favorites">Favorites</Nav.Link>
                         </Nav>
                     </Container>
