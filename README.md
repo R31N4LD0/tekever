@@ -3,11 +3,11 @@
 This project contains the challenge from Tekever where I should hit some requirements, all of then can be found [here](https://github.com/R31N4LD0/tekever/blob/master/public/Tekever%20-%20React%20Challenge.pdf), but basically We should have a main page showing a list of all pokemon, with pagination. When a pokemon is clicked another page should open with the details of this one and also It can be add to a favorited list (in browsers' localStorage). In the last page all the favorited pokemon should be listed. 
 
 ## Some more detailed infos
-The items in the section 'Functional requirements' included in the [PDF](https://github.com/R31N4LD0/tekever/blob/master/public/Tekever%20-%20React%20Challenge.pdf) was developed and can be used in this final version.\
+The items in the section 'Functional requirements' included in the [PDF](https://github.com/R31N4LD0/tekever/blob/master/public/Tekever%20-%20React%20Challenge.pdf) was developed and can be used in this final version.
 
 You'll need `yarn` or `npm` to run the project localy, but from now on We will cover all the steps using only `yarn`.
 
-The app uses React version `17.0.2`, and some 'addons' like `node-sass`, `axios`, `react-bootstrap` and `react-router-dom` to get the things more easy.
+The app uses React version `17.0.2`, and some 'addons' like `node-sass`, `axios`, `react-bootstrap` and `react-router-dom` to get the things done more easy.
 
 
 ## Running the project
