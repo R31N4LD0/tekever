@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import { useParams } from "react-router-dom";
 
-import { Button, Card, Col, ListGroup, ListGroupItem, Row, } from 'react-bootstrap';
+import { Button, Card, Col, ListGroup, ListGroupItem, Row } from 'react-bootstrap';
 
 import './Details.scss';
 
@@ -21,10 +21,12 @@ export default function Details() {
     const [pokemonMoves, setPokemonMoves] = useState([]);
     const [pokemonTotalMoves, setPokemonTotalMoves] = useState('');
 
+    /*
+        GET THE POKEMON ID, PASSED THROUGH THE ROUTE SET IN THE 'MAIN.JS'
+    */
     const { id } = useParams();
     const pokeDetailsURL = `https://pokeapi.co/api/v2/pokemon/${id}`;
     const baseStats = ['hp', 'attack', 'defense']
-
 
     useEffect(() => {
         setLoadingDetails(true);
@@ -72,6 +74,9 @@ export default function Details() {
         return isFavorite;
     }
     
+    /*
+        TOGGLE THE VARIABLE TO SET THE RIGHT BUTTON AND 'ADD IN'/'REMOVE FROM' THE LOCALSTORAGE THE ID 
+    */
     function toggleFavorite(id) {
         let storageList = JSON.parse(localStorage.favPokes);
 
@@ -117,11 +122,17 @@ export default function Details() {
                 </Col>
 
                 <Col>
+                    {/*
+                        THE 'CARDS' COULD BE ABSTRACTED TO A SEPARATED COMPONENT AND REUSABLE FOR ALL OF THEN
+                    */}
                     <Card className="text-center pokemon-card">
                         <Card.Header className="pokemon-card__abilities">Abilities</Card.Header>
                         <ListGroup className="list-group-flush">
                             {pokemonAbilities.map(
                                 (ability, i) => (
+                                    /*
+                                        THE API BRING SOME DATA WITH '-' INSTEAD SPACES, SO THIS IS WHY THE REPLACE EXISTS
+                                    */
                                     <ListGroupItem key={i}>
                                         {ability.replace('-', ' ')}
                                     </ListGroupItem>

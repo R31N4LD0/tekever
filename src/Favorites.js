@@ -29,11 +29,17 @@ export default function Favorites() {
 
     function retiviedFavoritedPokemonData(data) {
         for(let i in data) {
+            /*
+                CREATE A ARRAY OF REQUESTS
+            */
             requestsList.push(
                 axios.get(`https://pokeapi.co/api/v2/pokemon/${data[i]}`)
             )
         }
 
+        /*
+            GET EVERY RESPONSE FROM THE REQUEST ARRAY
+        */
         axios.all(requestsList)
             .then(
                 axios.spread(
