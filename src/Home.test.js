@@ -8,6 +8,7 @@ import PokemonList from './components/PokemonList';
 let container = null;
 /*
     SMALL DATA SAMPLE COPIED FROM ORIGINAL REQUEST 'https://pokeapi.co/api/v2/pokemon/'
+    IT COULD BE EXTRACT TO A 'MOCK FOLDER' AND IMPORTED IN HERE
 */
 let mockData = {
     "count":1118,
@@ -56,7 +57,7 @@ it('render loading message:', () => {
     expect(container.textContent).toBe('Searching Pokemon...');
 });
 
-it('render pokemon list and check pagination:', async () => {
+it('render pokemon list and pagination blocks:', async () => {
     await act(async () => {
         render(
             <PokemonList
