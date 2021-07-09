@@ -29,7 +29,7 @@ Visite the section [deployment](https://facebook.github.io/create-react-app/docs
 
 ## Tests
 
-They are here! Just run the command: `yarn test`to launche the test runner in the watch mode.
+They are here! Just run the command: `yarn test` to launch the test runner in the watch mode.
 
 It uses Enzyme with the temporarilly adapter for React 17 [@wojtekmaj](https://github.com/wojtekmaj/enzyme-adapter-react-17) until the official version cames out.
 

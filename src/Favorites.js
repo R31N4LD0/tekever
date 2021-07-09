@@ -56,7 +56,7 @@ export default function Favorites() {
             });
     }
 
-    if(loadingFavorites) return 'Searching Pokemon Favorited...';
+    if(loadingFavorites) return 'Searching Favorited Pokemon...';
 
     return (
         <>
