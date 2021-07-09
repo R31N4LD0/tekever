@@ -1,11 +1,8 @@
-import React from 'react';
-import { render, unmountComponentAtNode } from 'react-dom';
-import { act } from 'react-dom/test-utils';
-
+import React from "react";
+import { mount, shallow } from "enzyme";
 import Home from './Home';
 import PokemonList from './components/PokemonList';
 
-let container = null;
 /*
     SMALL DATA SAMPLE COPIED FROM ORIGINAL REQUEST 'https://pokeapi.co/api/v2/pokemon/'
     IT COULD BE EXTRACT TO A 'MOCK FOLDER' AND IMPORTED IN HERE
@@ -33,43 +30,42 @@ let mockData = {
         {
             "name":"charizard",
             "url":"https://pokeapi.co/api/v2/pokemon/6/"},
-    ]}
+    ]
+}
 
 let verifyMockPagination = (hasPagination) => {
     (hasPagination !== null) ? (true) : (false);
 }
 
+jest.mock('axios');
+
 beforeEach(() => {
-    container = document.createElement("div");
-    document.body.appendChild(container);
 });
 
 afterEach(() => {
-    unmountComponentAtNode(container);
-    container.remove();
-    container = null;
+    jest.clearAllMocks();
 });
 
-it('render loading message:', () => {
-    act(() => {
-        render(<Home/>, container);
+describe('Test Pokemon List:', () => {
+    let wrapper;
+  
+    test('render loading message:', () => {
+        wrapper = shallow(<Home />);
+        expect(wrapper.text()).toBe('Searching Pokemon...');
     });
-    expect(container.textContent).toBe('Searching Pokemon...');
-});
 
-it('render pokemon list and pagination blocks:', async () => {
-    await act(async () => {
-        render(
+    test('render pokemon list:', () => {
+        wrapper = mount(
             <PokemonList
                 pokemonList={mockData.results}
                 loadNextPage={verifyMockPagination(mockData.next)}
                 loadPrevPage={verifyMockPagination(mockData.previous)}
-            />,
-            container
-        )
+            />
+        );
+
+        wrapper.update();
+
+        expect(wrapper.find('.pokemon-list__item').length).toEqual(6);
+        expect(wrapper.find('a').first().props().href).toEqual(mockData.results[0].name);
     });
-    expect(container.querySelectorAll('.pagination-buttons').length).toEqual(2);
-    expect(
-        container.querySelector('.pokemon-list').firstChild.textContent
-    ).toBe(mockData.results[0].name);
-})
+  });

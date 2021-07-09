@@ -1,23 +1,12 @@
-import React from 'react';
-import axios from 'axios';
-import { waitFor } from '@testing-library/dom';
-import { useParams } from "react-router-dom";
-// import { render } from '@testing-library/react';
-import { render, unmountComponentAtNode } from 'react-dom';
-import { act } from 'react-dom/test-utils';
-
+import React from "react";
+import { useParams } from 'react-router-dom';
+import { mount, shallow } from "enzyme";
+import { act } from "react-dom/test-utils";
+import axios from "axios";
 import Details from './Details';
 
-// jest.mock('axios');
-/*
-    MOCKING 'useParams' FUNCTION
-*/
-jest.mock("react-router-dom", () => ({
-    ...jest.requireActual("react-router-dom"),
-    useParams: jest.fn()
-}));
-
 const mockPokemonData = {
+  data: {
     "abilities": [
       {
         "ability": {
@@ -37,8 +26,7 @@ const mockPokemonData = {
       }
     ],
     "base_experience": 62,
-    "id": 4,
-
+    "id": 4,  
     "is_default": true,
     "location_area_encounters": "https://pokeapi.co/api/v2/pokemon/4/encounters",
     "moves": [
@@ -115,50 +103,52 @@ const mockPokemonData = {
       }
     ],
     "weight": 85
-  };
+  }
+};
 
-let container = null;
+jest.mock('axios');
+/*
+  MOCKING 'useParams' FUNCTION
+*/
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
+  useParams: jest.fn()
+}));
 
 beforeEach(() => {
-    jest.clearAllMocks();
-
-    container = document.createElement("div");
-    document.body.appendChild(container);
-
-    /*
-        MOCKING URL PARAM FOR POKEMON ID/NAME
-    */
-    useParams.mockReturnValue({ id: 4 });
+  /*
+      MOCKING URL PARAM FOR POKEMON ID/NAME
+  */
+  useParams.mockReturnValue({ id: 4 });
 });
 
 afterEach(() => {
-    unmountComponentAtNode(container);
-    container.remove();
-    container = null;
+  jest.clearAllMocks();
 });
 
-it('render loading details message:', () => {
-    act(() => {
-        render(<Details/>, container);
+describe('Test Pokemon Details:', () => {
+  let wrapper;
+
+  test('render loading message:', () => {
+    wrapper = shallow(<Details />);
+    expect(wrapper.text()).toBe('Searching Pokemon Details...');
+  });
+
+  test('render pokemon details:', async () => {
+    window.localStorage.favPokes = '[]';
+
+    await act(async () => {
+      await axios.get.mockImplementationOnce(() => Promise.resolve(mockPokemonData));
+      wrapper = mount(<Details />);
     });
-    
-    expect(container.textContent).toBe('Searching Pokemon Details...');
+
+    wrapper.update();
+
+    await expect(axios.get).toHaveBeenCalledWith('https://pokeapi.co/api/v2/pokemon/4');
+    await expect(axios.get).toHaveBeenCalledTimes(1);
+    await expect(wrapper.find('img').props().src).toEqual(mockPokemonData.data.sprites.front_default);
+    /*
+      TODO: VERIFY PRINTED DATA SAMPLE (INSIDE THE BOXES)
+    */
+  });
 });
-
-// it('render loading details message:', async () => {
-//     jest.spyOn(axios, 'get').mockResolvedValue({
-//         data: mockPokemonData
-//     })
-
-//     const rendered = render(<Details/>, container);
-
-//     await waitFor(() => expect(rendered.queryAllByText('Searching')).toHaveLength(1));
-// });
-
-/*
-    * VERIFY DIFFERENCES BETWEEN LINES 5 AND 6
-    * PROBLEM WITH 2 jest.mock
-    * ERROR WHEN TRY PASS THROUGH LINE 71 (JSON.parse(localStorage.favPokes);)
-      PROBABLY A MOCK VALUE CAN SOLVE
-    * 
-*/

@@ -26,45 +26,47 @@ export default function Details() {
     */
     const { id } = useParams();
     const pokeDetailsURL = `https://pokeapi.co/api/v2/pokemon/${id}`;
-    const baseStats = ['hp', 'attack', 'defense']
+    const baseStats = ['hp', 'attack', 'defense'];
+    const axiosData = async () => {
+        return axios.get(pokeDetailsURL)
+    }
 
     useEffect(() => {
         setLoadingDetails(true);
-    
-        axios.get(pokeDetailsURL)
-            .then(res => {
-                const fullData = res.data;
-                console.log(fullData);
-                
-                setPokemonName(fullData.name);
-                setPokemonId(fullData.id);
-                setPokemonImage(fullData.sprites.front_default);
-                setPokemonWeight(fullData.weight);
-                setPokemonAbilities(
-                    fullData.abilities.map( ability => ability.ability.name )
-                );
-                setPokemonStats(fullData.stats.map( status => {
-                    if(baseStats.includes(status.stat.name)) {
-                        return {
-                            'name': status.stat.name,
-                            'stat': status.base_stat
-                        }
+
+        axiosData().then(res => {
+            const fullData = res.data;
+            // console.log(fullData);
+            
+            setPokemonName(fullData.name);
+            setPokemonId(fullData.id);
+            setPokemonImage(fullData.sprites.front_default);
+            setPokemonWeight(fullData.weight);
+            setPokemonAbilities(
+                fullData.abilities.map( ability => ability.ability.name )
+            );
+            setPokemonStats(fullData.stats.map( status => {
+                if(baseStats.includes(status.stat.name)) {
+                    return {
+                        'name': status.stat.name,
+                        'stat': status.base_stat
                     }
-                }).filter(item => item != null));
-                setPokemonBaseXP(fullData.base_experience)
-                setPokemonTypes(fullData.types.map(type => type.type.name));
-                setPokemonTotalMoves(fullData.moves.length)
-                setPokemonMoves(fullData.moves.map((move, i) => {
-                        if(i < 5) {
-                            return move.move.name
-                        }
-                    }).filter(item => item != null)
-                );
+                }
+            }).filter(item => item != null));
+            setPokemonBaseXP(fullData.base_experience)
+            setPokemonTypes(fullData.types.map(type => type.type.name));
+            setPokemonTotalMoves(fullData.moves.length)
+            setPokemonMoves(fullData.moves.map((move, i) => {
+                    if(i < 5) {
+                        return move.move.name
+                    }
+                }).filter(item => item != null)
+            );
 
-                checkIfPokemonIsFavorite(pokemonId)
+            checkIfPokemonIsFavorite(pokemonId)
 
-                setLoadingDetails(false);
-            });
+            setLoadingDetails(false);
+        });
     }, []);
     
     function checkIfPokemonIsFavorite(id) {

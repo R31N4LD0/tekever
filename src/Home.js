@@ -17,6 +17,11 @@ export default function Home() {
     const [nextURL, setNextURL] = useState();
     const [prevURL, setPrevURL] = useState();
     const [loadingContent, setLoadingContent] = useState(true);
+    const axiosData = async (tokenToCancel) => {
+        return axios.get(currentURL, {
+            callToken: new axios.CancelToken( (c) => {tokenToCancel = c} )
+        })
+    }
 
     useEffect(() => {
         setLoadingContent(true);
@@ -25,9 +30,7 @@ export default function Home() {
         /*
             THE 'CANCELTOKEN' IS USED TO BLOCK SIMULTANEOUS REQUESTS
         */
-        axios.get(currentURL, {
-            callToken: new axios.CancelToken( (c) => {tokenToCancel = c} )
-        }).then(res => {
+        axiosData(tokenToCancel).then(res => {
             setNextURL(res.data.next);
             setPrevURL(res.data.previous);
             setPokemonList(res.data.results);
